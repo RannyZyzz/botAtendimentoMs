@@ -7,9 +7,39 @@ var port = process.env.PORT || 3000;
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 
-app.get("/", (request,response) =>{
+class Stater extends EventEmitter {
+	constructor(props) {
+		super(props)
+		this.state = true
+	}
+
+	setState(newState) {
+		this.state = newState || false
+		this.emit('set', newState)
+	}
+
+	waitForTrue(newState) {
+		return new Promise(resolve => {
+			let check = () => {
+				if (this.state) {
+					this.off('set', check)
+					resolve()
+				}
+			}
+			this.on('set', check)
+			check()
+		})
+	}
+}
+
+const isOpen = new Stater
+
+app.get("/", async (request,response) =>{
     response.setHeader('Content-Type','application/json')
     console.log("Bot Atendimento MS - online")
+    await isOpen.waitForTrue()
+	isOpen.setState(false)
+	isOpen.setState(true)
     return response.send("Bot Atendimento MS - online")
 
 })
