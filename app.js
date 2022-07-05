@@ -45,7 +45,7 @@ app.get("/", async (request,response) =>{
 
 })
 
-app.post("/", (request,response) => {
+app.post("/", async (request,response) => {
     if(request.headers['Content-Type'] === 'application/json') return response.status(401).json({
         error: 'Invalid Type',
         message:'Content-Type must be application/json'
