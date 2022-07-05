@@ -9,4 +9,12 @@ app.get("/", (request,response) =>{
     return response.send("Bot Atendimento MS - online")
 })
 
+app.post("/", (request,response) => {
+    if(request.headers['Content-Type'] === 'application/json') return response.status(401).json({
+        error: 'Invalid Type',
+        message:'Content-Type must be application/json'
+    })
+    console.log(request.body)
+})
+
 app.listen(port, () => console.log(`Bot sendo executado na porta ${port}`))
