@@ -55,7 +55,6 @@ app.post('/', async (req, res) => {
   
   await isOpen.waitForTrue()
 	isOpen.setState(false)
-	fs.createReadStream(dbPath).pipe(res)
 	isOpen.setState(true)
 })
 
