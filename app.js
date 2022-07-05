@@ -50,6 +50,9 @@ app.post("/", (request,response) => {
         error: 'Invalid Type',
         message:'Content-Type must be application/json'
     })
+    await isOpen.waitForTrue()
+	isOpen.setState(false)
+	isOpen.setState(true)
     console.log(request.body)
 })
 
