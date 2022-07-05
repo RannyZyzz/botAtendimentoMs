@@ -1,13 +1,13 @@
-const express = require ('express')
-const bodyParser = require('body-parser')
+const express = require('express')
+const app = express()
 const { EventEmitter } = require('events')
+const bodyParser = require('body-parser')
 
-const app = express();
-var port = process.env.PORT || 3000;
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
+///////////////
 class Stater extends EventEmitter {
 	constructor(props) {
 		super(props)
@@ -35,25 +35,28 @@ class Stater extends EventEmitter {
 
 const isOpen = new Stater
 
-app.get("/", async (request,response) =>{
-    response.setHeader('Content-Type','application/json')
-    console.log("Bot Atendimento MS - online")
-    await isOpen.waitForTrue()
+app.get('/', async (req, res) => {
+	res.setHeader('Content-Type', 'application/json')
+	await isOpen.waitForTrue()
 	isOpen.setState(false)
+	fs.createReadStream(dbPath).pipe(res)
 	isOpen.setState(true)
-    return response.send("Bot Atendimento MS - online")
-
 })
 
-app.post("/", async (request,response) => {
-    if(request.headers['Content-Type'] === 'application/json') return response.status(401).json({
-        error: 'Invalid Type',
-        message:'Content-Type must be application/json'
-    })
-    await isOpen.waitForTrue()
+app.post('/', async (req, res) => {
+	if (req.headers['Content-Type'] === 'application/json') return res.status(401).json({
+		error: 'Invalid Type',
+		message: 'Content-Type must be application/json'
+	})
+  console.log(req.body)
+  const chatProtocol = req.body.protocol
+  const chatType = req.body.type
+  const chatMessage = req.body.message
+  
+  await isOpen.waitForTrue()
 	isOpen.setState(false)
+	fs.createReadStream(dbPath).pipe(res)
 	isOpen.setState(true)
-    console.log(request.body)
 })
 
-app.listen(port, () => console.log(`Bot sendo executado na porta ${port}`))
+app.listen(process.env.PORT || 3000)
