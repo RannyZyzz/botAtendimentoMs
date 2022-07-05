@@ -39,7 +39,6 @@ app.get('/', async (req, res) => {
 	res.setHeader('Content-Type', 'application/json')
 	await isOpen.waitForTrue()
 	isOpen.setState(false)
-	fs.createReadStream(dbPath).pipe(res)
 	isOpen.setState(true)
 })
 
