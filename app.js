@@ -33,6 +33,9 @@ app.post("/", async (request,response) => {
     }
 
     if(chatType == 'message'){
+        if(chatMessage == '0'){
+            typeAttend(chatProtocol)
+        }
         botOption1(chatProtocol)
     }
 
