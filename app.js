@@ -36,12 +36,9 @@ class Stater extends EventEmitter {
 
 const isOpen = new Stater
 
-app.get("/", async (request,response) =>{
+app.get("/", (request,response) =>{
     response.setHeader('Content-Type','application/json')
     console.log("Bot Atendimento MS - online")
-    await isOpen.waitForTrue()
-    isOpen.setState(false)
-    isOpen.setState(true)
     return response.send("Bot Atendimento MS - online")
 
 })
@@ -51,10 +48,16 @@ app.post("/", async (request,response) => {
         error: 'Invalid Type',
         message:'Content-Type must be application/json'
     })
+    
+    console.log(request.body)
+    const chatProtocol = request.body.protocol 
+    const chatType = request.body.type 
+    const chatMessage = request.body.message 
+    
+    
     await isOpen.waitForTrue()
     isOpen.setState(false)
     isOpen.setState(true)
-    console.log(request.body)
 })
 
 app.listen(port, () => console.log(`Bot sendo executado na porta ${port}`))
