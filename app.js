@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { typeAttend } from './chatTypes.js'
+import { typeAttend, botOption1 } from './chatTypes.js'
 
 const app = express();
 var port = process.env.PORT || 3000;
@@ -22,13 +22,21 @@ app.post("/", async (request,response) => {
     })
     
     console.log(request.body)
+    //Pegando as variaveis necessárias para o atendimento
     const chatProtocol = request.body.protocol
     const chatType = request.body.type
     const chatMessage = request.body.message
 
+    //verificando o tipo de mensagem enviada pelo callback do mosia
     if(chatType == 'attend'){
         typeAttend(chatProtocol)
     }
+
+    if(chatType == 'message'){
+        botOption1(chatProtocol)
+    }
+
+
 
     return response.sendStatus(200)
 })

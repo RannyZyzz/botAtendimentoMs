@@ -9,3 +9,8 @@ export async function typeAttend(chatProtocol){
       console.log(err.message)
     }
 }
+
+export async function botOption1(chatProtocol){
+    const chatMessageOption1 = 'Acesse este link e abra seu ticket.\nhttps://mobilesaude.zendesk.com/hc/pt-br/requests/new'
+    await sendBotMessage(chatProtocol,'message',chatMessageOption1)
+}
