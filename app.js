@@ -37,13 +37,13 @@ app.post("/", async (request,response) => {
     if(chatType == 'message' && chatMessage != '0'){
         botOption1(chatProtocol)
     }
-    if(chatType == 'message' && chatMessage == '0'){
+    else if(chatType == 'message' && chatMessage == '0'){
         typeAttend(chatProtocol)
     }
-    if(chatType == 'message' && chatMessage == '4'){
+    else if(chatType == 'message' && chatMessage == '4'){
         //criar função encerrar
     }
-    else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4'){
+    else if(chatType == 'message' && (chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4')){
         botWrongOption(chatProtocol,chatType)
     }
 

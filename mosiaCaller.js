@@ -8,7 +8,7 @@ export async function sendBotMessage(protocolo,type,message) {
       "path": `/v1/chatbot/call/${protocolo}/${type}`,
       "headers": {
         "content-type": "application/json",
-        "authorization": "tKKKs5P9L36ZvJg51ad4d6f01ba41e6da2bca94eff2c578475cf2994c71c7db9863532822dd90b0"
+        "authorization": "tKK3JbgqGY0PW3251ad4d6f01ba41e6da2bca94eff2c57850866fa8d8328c7f32ac6fb9b60a41f2"
       }
     };
     
