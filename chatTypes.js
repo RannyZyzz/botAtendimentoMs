@@ -17,7 +17,7 @@ export async function botOption1(chatProtocol){
 }
 
 export async function botOption2(chatProtocol){
-  await sendBotMessage(chatProtocol,chatType,'Só um momento iremos direcionar para um de nossos Atendentes').then(
+  await sendBotMessage(chatProtocol,'message','Só um momento iremos direcionar para um de nossos Atendentes').then(
     await sendBotMessage(chatProtocol,"transfer")
   )
 }
