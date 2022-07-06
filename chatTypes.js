@@ -23,7 +23,7 @@ export async function botOption2(chatProtocol){
 }
 
 export async function botOption3(chatProtocol){
-  await sendBotMessage(chatProtocol,'message','ATENÇÃO!\nEstamos implementando um pequeno healthchecks das aplicações da Mobile Saúde:\nEx:\nCMS: Online\nMensageria: Offline\nMosiaChat: Online\nTeleCare: Instável')
+  await sendBotMessage(chatProtocol,'message','ATENÇÃO!\nEstamos implementando um pequeno healthchecks das aplicações da Mobile Saúde:\nEXEMPLO:\nCMS: Online\nMensageria: Online\nMosiaChat: Online\nTeleCare: Online')
 }
 
 export async function botOption4(chatProtocol){
