@@ -34,7 +34,7 @@ app.post("/", async (request,response) => {
     }
 
     //acoes possiveis para: opcao1 
-    if(chatType == 'message' && chatMessage != '0' && chatMessage != '2' &&chatMessage != '4'){
+    if(chatType == 'message' && chatMessage != '0' && chatMessage != '2' && chatMessage != '3' && chatMessage != '4'){
         botOption1(chatProtocol)
     }
     else if(chatType == 'message' && chatMessage == '0'){
@@ -48,7 +48,12 @@ app.post("/", async (request,response) => {
     else if(chatType == 'message' && chatMessage == '2'){
         botOption2(chatProtocol)
     }
-    
+
+    //acoes possiveis para: opcao3
+    else if(chatType == 'message' && chatMessage == '3'){
+        botOption3(chatProtocol)
+    }
+
     else if(chatType == 'message' && (chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4')){
         botWrongOption(chatProtocol,chatType)
     }
