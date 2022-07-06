@@ -32,5 +32,6 @@ async function gsrun(client){
     const rows = data.data.values
     rows.map((row) =>{
         console.log(row)
+        return row
     })
 }
