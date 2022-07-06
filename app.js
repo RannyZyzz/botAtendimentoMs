@@ -1,6 +1,6 @@
-const express = require ('express')
-const bodyParser = require('body-parser')
-import { typeAttend } from './chatTypes'
+import express from 'express'
+import bodyParser from 'body-parser'
+import { typeAttend } from './chatTypes.js'
 
 const app = express();
 var port = process.env.PORT || 3000;
