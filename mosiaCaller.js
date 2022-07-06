@@ -26,9 +26,13 @@ export async function sendBotMessage(protocolo,type,message) {
     });
   
     if(type == 'transfer'){
-      req.write(JSON.stringify({queue: '0001'}));
-      req.end();
-    }else{
+        req.write(JSON.stringify({queue: '0001'}));
+        req.end();
+    }else if(type == 'close'){
+        req.write(JSON.stringify({compulsoryClose: false}));
+        req.end();
+    }
+    else{
       await req.write(JSON.stringify({
       message: `${message}`
     }));

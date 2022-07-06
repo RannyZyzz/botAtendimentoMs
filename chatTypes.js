@@ -17,7 +17,7 @@ export async function botOption1(chatProtocol){
 }
 
 export async function botOption4(chatProtocol){
-    await sendBotMessage()
+    await sendBotMessage(chatProtocol,'close')
 }
 
 export async function botWrongOption(chatProtocol,chatType){
