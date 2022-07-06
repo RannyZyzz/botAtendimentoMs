@@ -1,5 +1,6 @@
 const express = require ('express')
 const bodyParser = require('body-parser')
+const { typeAttend } = require('./chatTypes')
 
 const app = express();
 var port = process.env.PORT || 3000;
@@ -21,7 +22,14 @@ app.post("/", async (request,response) => {
     })
     
     console.log(request.body)
-    
+    const chatProtocol = request.body.protocol
+    const chatType = request.body.type
+    const chatMessage = request.body.message
+
+    if(chatType == 'attend'){
+        typeAttend()
+    }
+
     return response.sendStatus(200)
 })
 
