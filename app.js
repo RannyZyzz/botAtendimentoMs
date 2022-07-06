@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { typeAttend, botOption1 } from './chatTypes.js'
+import { typeAttend, botOption1, botWrongOption } from './chatTypes.js'
 
 const app = express();
 var port = process.env.PORT || 3000;
@@ -44,8 +44,7 @@ app.post("/", async (request,response) => {
         //criar função encerrar
     }
     else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4'){
-        const chatMessageWrongOption = "Desculpe não entendi a opção desejada, poderia selecionar uma novamente."
-        await sendBotMessage(chatProtocol,chatType,chatMessageWrongOption)
+        botWrongOption(chatProtocol,chatType)
     }
 
 
