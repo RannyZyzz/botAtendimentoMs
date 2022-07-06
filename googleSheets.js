@@ -28,10 +28,16 @@ async function gsrun(client){
         majorDimension: 'ROWS'
     }
 
+    let array = []
     let data = await gsapi.spreadsheets.values.get(opt)
     const rows = data.data.values
-    rows.map((row) =>{
-        console.log(row)
-        return row
-    })
+    const lengthRow = rows[0].length
+    if (lengthRow) {
+            rows.map((row) =>{
+                for(var i=0; i < lengthRow; i++ ){
+                    array.push(row[i])
+                }
+            })
+            return array
+        }
 }
