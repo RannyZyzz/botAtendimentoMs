@@ -34,7 +34,7 @@ app.post("/", async (request,response) => {
     }
 
     //acoes possiveis para: opções1 
-    if(chatType == 'message'){
+    if(chatType == 'message' && chatMessage != '0'){
         botOption1(chatProtocol)
     }
     else if(chatType == 'message' && chatMessage == '0'){
