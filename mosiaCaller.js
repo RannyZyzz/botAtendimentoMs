@@ -1,4 +1,4 @@
-export function sendBotMessage(protocolo,type,message) {
+export async function sendBotMessage(protocolo,type,message) {
     var http = require("https");
     
     const options = {
