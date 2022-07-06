@@ -28,17 +28,25 @@ app.post("/", async (request,response) => {
     const chatMessage = request.body.message
 
     //verificando o tipo de mensagem enviada pelo callback do mosia
+    //Primeiro atendimento Menu Principal
     if(chatType == 'attend'){
         typeAttend(chatProtocol)
     }
 
-    if(chatType == 'message'){
-        if(chatMessage == '0'){
-            typeAttend(chatProtocol)
-        }
+    //acoes possiveis para: opções1 
+    if(chatType == 'message' && chatMessage != '0'){
         botOption1(chatProtocol)
     }
-
+    if(chatType == 'message' && chatMessage == '0'){
+        typeAttend(chatProtocol)
+    }
+    if(chatType == 'message' && chatMessage == '4'){
+        //criar função encerrar
+    }
+    else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4'){
+        const chatMessageWrongOption = "Desculpe não entendi a opção desejada, poderia selecionar uma novamente."
+        await sendBotMessage(chatProtocol,chatType,chatMessageWrongOption)
+    }
 
 
     return response.sendStatus(200)
