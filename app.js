@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { typeAttend, botOption1, botWrongOption, botOption4, botOption2 } from './chatTypes.js'
+import { typeAttend, botOption1, botOption2, botOption3, botOption4, botWrongOption } from './chatTypes.js'
 
 const app = express();
 var port = process.env.PORT || 3000;
