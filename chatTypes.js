@@ -1,7 +1,7 @@
 import { sendBotMessage } from './mosiaCaller.js'
 
 export async function typeAttend(chatProtocol){
-    const chatMenuOptions = 'Escolha uma das opções:\n1- Abrir chamado;\n2- Falar com um de nossos atendentes;\n3- Consultar status online;\n4- Encerrar Atendimento'
+    const chatMenuOptions = 'Escolha uma das opções:\n1- Consultar status online;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento'
     try{
       await sendBotMessage(chatProtocol,"message",chatMenuOptions)  
     }
@@ -11,19 +11,19 @@ export async function typeAttend(chatProtocol){
 }
 
 export async function botOption1(chatProtocol){
-    await sendBotMessage(chatProtocol,'message','ATENÇÃO!\nEstamos implementando a funcionalidade para abrir chamados diretamente pelo MosiaChat'+
+  await sendBotMessage(chatProtocol,'message','ATENÇÃO!\nEstamos implementando um pequeno healthchecks das aplicações da Mobile Saúde:\nEXEMPLO:\nCMS: Online\nMensageria: Online\nMosiaChat: Online\nTeleCare: Online')
+}
+
+export async function botOption2(chatProtocol){
+  await sendBotMessage(chatProtocol,'message','ATENÇÃO!\nEstamos implementando a funcionalidade para abrir chamados diretamente pelo MosiaChat'+
     '\n\nAté lá, acesse este link e abra seu ticket.\nhttps://mobilesaude.zendesk.com/hc/pt-br/requests/new'+
     '\n\nDeseja encerrar este atendimento?\n0-Retornar ao Menu\n4-Encerrar atendimento')
 }
 
-export async function botOption2(chatProtocol){
+export async function botOption3(chatProtocol){
   await sendBotMessage(chatProtocol,'message','Só um momento iremos direcionar para um de nossos Atendentes').then(
     await sendBotMessage(chatProtocol,"transfer")
   )
-}
-
-export async function botOption3(chatProtocol){
-  await sendBotMessage(chatProtocol,'message','ATENÇÃO!\nEstamos implementando um pequeno healthchecks das aplicações da Mobile Saúde:\nEXEMPLO:\nCMS: Online\nMensageria: Online\nMosiaChat: Online\nTeleCare: Online')
 }
 
 export async function botOption4(chatProtocol){
