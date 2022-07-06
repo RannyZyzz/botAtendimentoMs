@@ -27,7 +27,7 @@ app.post("/", async (request,response) => {
     const chatMessage = request.body.message
 
     if(chatType == 'attend'){
-        typeAttend()
+        typeAttend(chatProtocol)
     }
 
     return response.sendStatus(200)
