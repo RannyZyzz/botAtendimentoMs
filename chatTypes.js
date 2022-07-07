@@ -14,9 +14,11 @@ export async function typeAttend(chatProtocol){
 export async function botOption1(chatProtocol){
   const googleSheets = await requestGs()
   const lengthArray = googleSheets.length
-  for (i=0; i < lengthArray; i++ ){
+  
+  for (var i=0; i < lengthArray; i++){
       console.log(lengthArray[i])
   }
+  
   const result = googleSheets.toString().replace(/"/gi,'')
   
   await sendBotMessage(chatProtocol,'message','ATENÇÃO!\nEstamos implementando um pequeno healthchecks das aplicações da Mobile Saúde:\nEXEMPLO:\nCMS: Online\nMensageria: Online\nMosiaChat: Online\nTeleCare: Online').then(
