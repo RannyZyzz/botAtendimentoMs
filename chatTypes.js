@@ -42,6 +42,9 @@ export async function botOption4(chatProtocol){
 export async function botWrongOption(chatProtocol){
     const chatMessageWrongOption = "Desculpe não entendi a opção desejada, poderia selecionar uma novamente."
     await sendBotMessage(chatProtocol,'message',chatMessageWrongOption)
+    
+    //envio menu opcoes
+    await typeAttend(chatProtocol)
 }
 
 export async function botOptionHelper(chatProtocol){
