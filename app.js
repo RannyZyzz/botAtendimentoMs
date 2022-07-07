@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { typeAttend, botOption1, botOption2, botOption3, botOption4, botWrongOption } from './chatTypes.js'
+import { typeAttend, botOption1, botOption2, botOption3, botOption4, botWrongOption, botCallerDontClose } from './chatTypes.js'
 
 const app = express();
 var port = process.env.PORT || 3000;
@@ -26,6 +26,7 @@ app.post("/", async (request,response) => {
     const chatProtocol = request.body.protocol
     const chatType = request.body.type
     const chatMessage = request.body.message
+    const chatConfirm = request.body.confirm
 
     //verificando o tipo de mensagem enviada pelo callback do mosia
     //Primeiro atendimento Menu Principal
@@ -43,7 +44,7 @@ app.post("/", async (request,response) => {
         }
         //acoes possiveis para: opcao2
         else if(chatMessage == '2'){
-            botOption2(chatProtocol)
+            await botOption2(chatProtocol)
            
         }
         //acoes possiveis para: opcao3
@@ -54,8 +55,13 @@ app.post("/", async (request,response) => {
             await botOption4(chatProtocol)
         }
         else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4'){
-                botWrongOption(chatProtocol)
+            await botWrongOption(chatProtocol)
         }
+    }
+
+    //Em caso do chamador negar o encerramento do chat
+    if(chatType == 'close' && chatConfirm == false){
+        await botCallerDontClose(chatProtocol)
     }
     
     return response.sendStatus(200)
