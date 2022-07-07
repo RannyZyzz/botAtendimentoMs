@@ -39,17 +39,20 @@ app.post("/", async (request,response) => {
             await typeAttend(chatProtocol)
         }
         else if(chatMessage == '1'){
-            await botOption1(chatProtocol)
-            .then(
-                await botOptionHelper(chatProtocol)
-            )
+            (async () => {
+                let result = await botOption1(chatProtocol)
+                result = await botOptionHelper(chatProtocol)
+                return result
+            })()
         }
         //acoes possiveis para: opcao2
         else if(chatMessage == '2'){
-            await botOption2(chatProtocol)
-            .then(
-                await botOptionHelper(chatProtocol)
-            )
+            (async () =>{
+                let result = await botOption2(chatProtocol)
+                result = await botOptionHelper(chatProtocol)
+                return result
+            })
+           
         }
         //acoes possiveis para: opcao3
         else if(chatMessage == '3'){
