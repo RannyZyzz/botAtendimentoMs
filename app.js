@@ -39,16 +39,16 @@ app.post("/", async (request,response) => {
             typeAttend(chatProtocol)
         }
         else if(chatMessage == '1'){
-            botOption1(chatProtocol)
+            await botOption1(chatProtocol)
             .then(
-                await botOptionHelper(chatProtocol)
+                botOptionHelper(chatProtocol)
             )
         }
         //acoes possiveis para: opcao2
         else if(chatMessage == '2'){
-            botOption2(chatProtocol)
+            await botOption2(chatProtocol)
             .then(
-                await botOptionHelper(chatProtocol)
+                botOptionHelper(chatProtocol)
             )
         }
         //acoes possiveis para: opcao3
