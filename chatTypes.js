@@ -15,13 +15,14 @@ export async function botOption1(chatProtocol){
   //Retornando dados da googleSheets e tratando para exibição no MosiaChat
   const googleSheets = await requestGs()
   const result = googleSheets.toString().replace(/,/g,'\n')
-  await sendBotMessage(chatProtocol,'message',`ATENÇÃO!\nImplementamos um pequeno healthchecks das aplicações da Mobile Saúde, verifique abaixo o status de nossos serviços e aplicações.\n\n${result}`)
+  await sendBotMessage(chatProtocol,'message',`ATENÇÃO!\nImplementamos um pequeno healthchecks das aplicações da Mobile Saúde, verifique abaixo o status de nossos serviços e aplicações.\n\n${result}`+
+  '\n\nConseguimos ajudar?\n0-Retornar ao Menu\n4-Encerrar atendimento')
 }
 
 export async function botOption2(chatProtocol){
   await sendBotMessage(chatProtocol,'message','ATENÇÃO!\nEstamos implementando a funcionalidade para abrir chamados diretamente pelo MosiaChat'+
     '\n\nAté lá, acesse este link e abra seu ticket.\nhttps://mobilesaude.zendesk.com/hc/pt-br/requests/new'+
-    '\n\nDeseja encerrar este atendimento?\n0-Retornar ao Menu\n4-Encerrar atendimento')
+    '\n\nConseguimos ajudar?\n0-Retornar ao Menu\n4-Encerrar atendimento')
 }
 
 export async function botOption3(chatProtocol){
