@@ -24,7 +24,7 @@ async function gsrun(client){
     const gsapi = google.sheets({version: 'v4',auth: client})
     const opt = {
         spreadsheetId:'12HnALf4z03lepUk05vG9PWplJSIsDkbr-JqXsnSQIho',
-        range: 'index!E',
+        range: 'index!E:E',
         majorDimension: 'ROWS'
     }
 
