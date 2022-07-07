@@ -59,7 +59,7 @@ app.post("/", async (request,response) => {
         }
     }
 
-    //Em caso do chamador negar o encerramento do chat
+    //Em caso do chamador negar o encerramento
     if(chatType == 'close' && chatConfirm == false){
         await botCallerDontClose(chatProtocol)
     }
