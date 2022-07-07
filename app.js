@@ -33,33 +33,33 @@ app.post("/", async (request,response) => {
         typeAttend(chatProtocol)
     }
 
-    //acoes possiveis para: opcao1 
-    if(chatType == 'message' && chatMessage != '0' && chatMessage != '2' && chatMessage != '3' && chatMessage != '4'){
-        botOption1(chatProtocol)
-    }
-    else if(chatType == 'message' && chatMessage == '0'){
-        typeAttend(chatProtocol)
-    }
-    else if(chatType == 'message' && chatMessage == '4'){
-        botOption4(chatProtocol)
-    }
+    if(chatType == "message"){
+        //acoes possiveis para: opcao1 
+        if(chatMessage != '0' && chatMessage != '2' && chatMessage != '3' && chatMessage != '4'){
+            botOption1(chatProtocol)
+        }
+        else if(chatMessage == '0'){
+            typeAttend(chatProtocol)
+        }
+        else if(chatMessage == '4'){
+            botOption4(chatProtocol)
+        }
 
-    //acoes possiveis para: opcao2
-    else if(chatType == 'message' && chatMessage == '2'){
-        botOption2(chatProtocol)
+        //acoes possiveis para: opcao2
+        else if(chatMessage == '2'){
+            botOption2(chatProtocol)
+        }
+
+        //acoes possiveis para: opcao3
+        else if(chatMessage == '3'){
+            botOption3(chatProtocol)
+        }
+
+        else if((chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4')){
+            botWrongOption(chatProtocol,chatType)
+        }
     }
-
-    //acoes possiveis para: opcao3
-    else if(chatType == 'message' && chatMessage == '3'){
-        botOption3(chatProtocol)
-    }
-
-    else if(chatType == 'message' && (chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4')){
-        botWrongOption(chatProtocol,chatType)
-    }
-
-
-
+    
     return response.sendStatus(200)
 })
 
