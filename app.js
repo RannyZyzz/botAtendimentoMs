@@ -59,7 +59,7 @@ app.post("/", async (request,response) => {
             await botOption4(chatProtocol)
         }
         else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4'){
-            await botWrongOption(chatProtocol,chatType)
+            await botWrongOption(chatProtocol)
             .then( 
                 await typeAttend(chatProtocol)
                 )

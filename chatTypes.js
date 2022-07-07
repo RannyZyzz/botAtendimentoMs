@@ -33,12 +33,12 @@ export async function botOption4(chatProtocol){
     await sendBotMessage(chatProtocol,'close','message')
 }
 
-export async function botWrongOption(chatProtocol,chatType){
+export async function botWrongOption(chatProtocol){
     const chatMessageWrongOption = "Desculpe não entendi a opção desejada, poderia selecionar uma novamente."
-    await sendBotMessage(chatProtocol,chatType,chatMessageWrongOption)
+    await sendBotMessage(chatProtocol,'message',chatMessageWrongOption)
 }
 
 export async function botOptionHelper(chatProtocol){
     const chatMessageHelper = ('Conseguimos ajudar?\n0-Retornar ao Menu\n4-Encerrar atendimento')
-    await sendBotMessage(chatProtocol,chatType,chatMessageHelper)
+    await sendBotMessage(chatProtocol,'message',chatMessageHelper)
 }
