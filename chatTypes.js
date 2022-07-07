@@ -18,8 +18,10 @@ export async function botOption1(chatProtocol){
     console.log(sheets)
   })
   
+  const result = googleSheets.toString().replace(/,/g,'\n')
+
   await sendBotMessage(chatProtocol,'message','ATENÇÃO!\nEstamos implementando um pequeno healthchecks das aplicações da Mobile Saúde:\nEXEMPLO:\nCMS: Online\nMensageria: Online\nMosiaChat: Online\nTeleCare: Online').then(
-    await sendBotMessage(chatProtocol,'message',googleSheets)
+    await sendBotMessage(chatProtocol,'message',result)
   )
 }
 
