@@ -2,7 +2,7 @@ import { sendBotMessage } from './mosiaCaller.js'
 import { requestGs } from './googleSheets.js'
 
 export async function typeAttend(chatProtocol){
-    const chatMenuOptions = 'Escolha uma das opções:\n1- Consultar status online;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento'
+    const chatMenuOptions = 'Escolha uma das opções:\n1- Consultar status de nossos serviços;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento'
     try{
       await sendBotMessage(chatProtocol,"message",chatMenuOptions)  
     }
@@ -15,7 +15,7 @@ export async function botOption1(chatProtocol){
   //Retornando dados da googleSheets e tratando para exibição no MosiaChat
   const googleSheets = await requestGs()
   const result = googleSheets.toString().replace(/,/g,'\n')
-  await sendBotMessage(chatProtocol,'message',`ATENÇÃO!\nImplementamos um pequeno healthchecks das aplicações da Mobile Saúde, verifique abaixo o status de nossos serviços.\n\n${result}`)
+  await sendBotMessage(chatProtocol,'message',`ATENÇÃO!\nImplementamos um pequeno healthchecks das aplicações da Mobile Saúde, verifique abaixo o status de nossos serviços e aplicações.\n\n${result}`)
 }
 
 export async function botOption2(chatProtocol){
