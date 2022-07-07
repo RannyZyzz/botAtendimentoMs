@@ -16,9 +16,9 @@ export async function botOption1(chatProtocol){
   const lengthArray = googleSheets.length
   
   for (var i=0; i < lengthArray; i++){
-      console.log(lengthArray[i])
+      console.log(JSON.stringify(lengthArray[i]))
   }
-  
+
   const result = googleSheets.toString().replace(/"/gi,'')
   
   await sendBotMessage(chatProtocol,'message','ATENÇÃO!\nEstamos implementando um pequeno healthchecks das aplicações da Mobile Saúde:\nEXEMPLO:\nCMS: Online\nMensageria: Online\nMosiaChat: Online\nTeleCare: Online').then(
