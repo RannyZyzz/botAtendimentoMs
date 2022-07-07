@@ -45,7 +45,7 @@ export async function botWrongOption(chatProtocol){
 }
 
 export async function botCallerDontClose(chatProtocol){
-  const chatMessageCallerDontclose = 'Tudo bem, podemos ajudar em mais alguma coisa? Se SIM selecione uma de nossas opções caso constrário basta digitar 4' +
+  const chatMessageCallerDontclose = 'Tudo bem, podemos ajudar em mais alguma coisa?\nSe SIM selecione uma de nossas opções abaixo, caso constrário basta digitar 4 para encerrar o atendimento' +
   '\n\nEscolha uma das opções:\n1- Consultar status de nossos serviços;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento'
   await sendBotMessage(chatProtocol,'message',chatMessageCallerDontclose)
 }
