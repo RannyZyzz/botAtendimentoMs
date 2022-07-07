@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { typeAttend, botOption1, botOption2, botOption3, botOption4, botWrongOption } from './chatTypes.js'
+import { typeAttend, botOption1, botOption2, botOption3, botOption4, botWrongOption, botOptionHelper } from './chatTypes.js'
 
 const app = express();
 var port = process.env.PORT || 3000;
@@ -30,27 +30,33 @@ app.post("/", async (request,response) => {
     //verificando o tipo de mensagem enviada pelo callback do mosia
     //Primeiro atendimento Menu Principal
     if(chatType == 'attend'){
-        typeAttend(chatProtocol)
+        await typeAttend(chatProtocol)
     }
 
     if(chatType == "message"){
         //acoes possiveis para: opcao1 
         if(chatMessage == '0'){
-            typeAttend(chatProtocol)
+            await typeAttend(chatProtocol)
         }
         else if(chatMessage == '1'){
-            botOption1(chatProtocol)
+            await botOption1(chatProtocol)
+            .then(
+                await botOptionHelper(chatProtocol)
+            )
         }
         //acoes possiveis para: opcao2
         else if(chatMessage == '2'){
-            botOption2(chatProtocol)
+            await botOption2(chatProtocol)
+            .then(
+                await botOptionHelper(chatProtocol)
+            )
         }
         //acoes possiveis para: opcao3
         else if(chatMessage == '3'){
-            botOption3(chatProtocol)
+            await botOption3(chatProtocol)
         }
         else if(chatMessage == '4'){
-            botOption4(chatProtocol)
+            await botOption4(chatProtocol)
         }
         else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4'){
             await botWrongOption(chatProtocol,chatType)
