@@ -12,17 +12,10 @@ export async function typeAttend(chatProtocol){
 }
 
 export async function botOption1(chatProtocol){
+  //Retornando dados da googleSheets e tratando para exibição no MosiaChat
   const googleSheets = await requestGs()
-  
-  googleSheets.map((sheets) =>{
-    console.log(sheets)
-  })
-  
   const result = googleSheets.toString().replace(/,/g,'\n')
-
-  await sendBotMessage(chatProtocol,'message','ATENÇÃO!\nImplementamos um pequeno healthchecks das aplicações da Mobile Saúde:\nVerifique abaixo o status de nossos serviços').then(
-    await sendBotMessage(chatProtocol,'message',result)
-  )
+  await sendBotMessage(chatProtocol,'message',`ATENÇÃO!\nImplementamos um pequeno healthchecks das aplicações da Mobile Saúde\nVerifique abaixo o status de nossos serviços\n${result}`)
 }
 
 export async function botOption2(chatProtocol){
