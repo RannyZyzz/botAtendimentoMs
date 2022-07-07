@@ -15,9 +15,9 @@ export async function botOption1(chatProtocol){
   const googleSheets = await requestGs()
   const lengthArray = googleSheets.length
   
-  for (var i=0; i < lengthArray; i++){
-      console.log(JSON.stringify(lengthArray[i]))
-  }
+  googleSheets.map((googleSheets) =>{
+    console.log(googleSheets)
+  })
 
   const result = googleSheets.toString().replace(/"/gi,'')
   
