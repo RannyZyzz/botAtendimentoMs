@@ -59,11 +59,11 @@ app.post("/", async (request,response) => {
             await botOption4(chatProtocol)
         }
         else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4'){
-                async () =>{  
+                (async () =>{  
                     var result = await botWrongOption(chatProtocol)
                     result = await typeAttend(chatProtocol)
-                    return result
-                }
+                    return result;
+                })()
         }
     }
     
