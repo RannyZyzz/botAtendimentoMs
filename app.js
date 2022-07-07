@@ -39,23 +39,11 @@ app.post("/", async (request,response) => {
             await typeAttend(chatProtocol)
         }
         else if(chatMessage == '1'){
-            (async () => {
-                let result = await botOption1(chatProtocol)
-                .then(
-                    result = await botOptionHelper(chatProtocol)
-                    )
-                return result
-            })()
+            await botOption1(chatProtocol)
         }
         //acoes possiveis para: opcao2
         else if(chatMessage == '2'){
-            (async () =>{
-                let result = await botOption2(chatProtocol)
-                .then(
-                    result = await botOptionHelper(chatProtocol)
-                    )
-                return result
-            })()
+            botOption2(chatProtocol)
            
         }
         //acoes possiveis para: opcao3
@@ -67,10 +55,8 @@ app.post("/", async (request,response) => {
         }
         else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4'){
                 (async () =>{  
-                    let result = await botWrongOption(chatProtocol)
-                    .then(
-                        result = await typeAttend(chatProtocol)
-                    )
+                    var result = await botWrongOption(chatProtocol)
+                    result = await typeAttend(chatProtocol)
                     return result;
                 })()
         }
