@@ -39,7 +39,6 @@ export async function sendBotMessage(protocolo,type,message) {
     }))
 
     console.log(JSON.stringify(message))
-
     req.end();
     }
 
