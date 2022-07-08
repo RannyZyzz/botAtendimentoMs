@@ -1,4 +1,5 @@
 import http from "https"
+import { botMessageAttendantsOffline } from './chatTypes.js'
 
 export async function sendBotMessage(protocolo,type,message) {
     
@@ -35,7 +36,12 @@ export async function sendBotMessage(protocolo,type,message) {
     else{
       await req.write(JSON.stringify({
       message: `${message}`
-    }));
+    }))
+
+    if(message == 'No online agent.'){
+      await botMessageAttendantsOffline(chatProtocol)
+    }
+
     req.end();
     }
 

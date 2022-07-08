@@ -64,10 +64,6 @@ app.post("/", async (request,response) => {
     if(chatType == 'close' && chatConfirm == false){
         await botCallerDontClose(chatProtocol)
     }
-
-    if(chatMessage == 'No online agent.'){
-        await botMessageAttendantsOffline(chatProtocol)
-    }
     
     return response.sendStatus(200)
 })
