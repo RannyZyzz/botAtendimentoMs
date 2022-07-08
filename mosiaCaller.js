@@ -38,9 +38,7 @@ export async function sendBotMessage(protocolo,type,message) {
       message: `${message}`
     }))
 
-    if(message == 'No online agent.'){
-      await botMessageAttendantsOffline(chatProtocol)
-    }
+    console.log(JSON.stringify(message))
 
     req.end();
     }
