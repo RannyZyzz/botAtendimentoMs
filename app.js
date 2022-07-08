@@ -1,6 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { typeAttend, botOption1, botOption2, botOption3, botOption4, botWrongOption, botCallerDontClose } from './chatTypes.js'
+import { typeAttend, botOption1, botOption2, botOption3, botOption4, botWrongOption, botCallerDontClose, botMessageAttendantsOffline } from './chatTypes.js'
+import { sendBotMessage } from './mosiaCaller.js';
 
 const app = express();
 var port = process.env.PORT || 3000;
@@ -62,6 +63,10 @@ app.post("/", async (request,response) => {
     //Em caso do chamador negar o encerramento
     if(chatType == 'close' && chatConfirm == false){
         await botCallerDontClose(chatProtocol)
+    }
+
+    if(chatMessage == 'No online agent.'){
+        await botMessageAttendantsOffline(chatProtocol)
     }
     
     return response.sendStatus(200)

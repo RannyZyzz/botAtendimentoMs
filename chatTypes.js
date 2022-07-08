@@ -49,3 +49,10 @@ export async function botCallerDontClose(chatProtocol){
   '\n\nEscolha uma das opções:\n1- Consultar status de nossos serviços;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento'
   await sendBotMessage(chatProtocol,'message',chatMessageCallerDontclose)
 }
+
+
+export async function botMessageAttendantsOffline(chatProtocol){
+  const botMessageAttendantsOffline = 'Verificamos que todos os nossos atendentes se encontram-se offline, por favor tente novamente mais tarde.' +
+  '\n\nConseguimos ajudar?\n0-Retornar ao Menu\n4-Encerrar atendimento'
+  await sendBotMessage(chatProtocol,'message',botMessageAttendantsOffline)
+}
