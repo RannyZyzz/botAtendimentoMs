@@ -22,7 +22,7 @@ export async function botOption1(chatProtocol){
 
 export async function botOption2(chatProtocol){
   const messageOption2 = 'ATENÇÃO!\nEstamos implementando a funcionalidade para abrir chamados diretamente pelo MosiaChat'+
-  '\n\nAté lá, acesse este link e abra seu ticket.\nhttps://mobilesaude.zendesk.com/hc/pt-br/requests/new'+
+  '\n\nAté lá, acesse este link e abra seu ticket.\n<a href="https://mobilesaude.zendesk.com/hc/pt-br/requests/new" target="_blank"> >>>Clique aqui<<< </a>'+
   '\n\nConseguimos ajudar?\n0-Retornar ao Menu\n4-Encerrar atendimento'
   await sendBotMessage(chatProtocol,'message',messageOption2)
 }
