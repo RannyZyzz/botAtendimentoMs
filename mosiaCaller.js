@@ -22,7 +22,12 @@ export async function sendBotMessage(protocolo,type,message) {
     
       res.on("end", async function () {
         var body = await Buffer.concat(chunks);
-        console.log(body.toString());
+        console.log(body.toString())
+
+        //identificando fila vazia e retornando ao chat
+        if(body.toString().match(/No online agent.*/)){
+          await botMessageAttendantsOffline(protocolo)
+        }
       });
     });
   
@@ -37,8 +42,7 @@ export async function sendBotMessage(protocolo,type,message) {
       await req.write(JSON.stringify({
       message: `${message}`
     }))
-
-    console.log(JSON.stringify(message))
+    
     req.end();
     }
 
