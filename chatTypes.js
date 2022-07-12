@@ -40,10 +40,10 @@ export async function botOption4(chatProtocol){
 }
 
 var check = 0
-export async function botOption5(chatProtocol,message){
+export async function botOption5(chatProtocol,message,emailAuthentication){
   if(check >= 1){
     const numberZendesk = message.toString().replace(/#/g,'')
-    const zendesk = await ticketZendesk(numberZendesk)
+    const zendesk = await ticketZendesk(numberZendesk,emailAuthentication)
     const result = zendesk.toString().replace(/,/g,'\n')
     await sendBotMessage(chatProtocol,'message',result)
     check += 0

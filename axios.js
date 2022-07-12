@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export async function ticketZendesk(idTicket){
+export async function ticketZendesk(idTicket,emailAuthentication){
     let array = []
 
     const ticket = `https://mobilesaude.zendesk.com/api/v2/tickets/${idTicket}.json`
@@ -31,6 +31,7 @@ export async function ticketZendesk(idTicket){
     }
     //Verificando nome do Cliente pelo organizationId
     const objTicket = await requestApi(ticket)
+    const ticketRequester = objTicket.data.ticket.requester_id
     const organizationId = objTicket.data.ticket.organization_id
     const ticketStatus = objTicket.data.ticket.status
     const ticketCreatedAt = objTicket.data.ticket.created_at
@@ -39,6 +40,15 @@ export async function ticketZendesk(idTicket){
     const ticketPriority = objTicket.data.ticket.priority
     const ticketAssigneeId = objTicket.data.ticket.assignee_id
     const ticketDataEntrega = objTicket.data.ticket.fields
+
+    
+    const requester = `https://mobilesaude.zendesk.com/api/v2/users/${ticketRequester}.json`
+    const objRequester = await requestApi(requester)
+    if(emailAuthentication == objRequester.data.user.email){
+        console.log('Aberto por: ' + objRequester.data.user.email)
+    }
+    
+    
 
     const organization = `https://mobilesaude.zendesk.com/api/v2/organizations/${organizationId}`
     const objOrganization = await requestApi(organization)

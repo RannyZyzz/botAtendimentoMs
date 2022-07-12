@@ -28,6 +28,7 @@ app.post("/", async (request,response) => {
     const chatType = request.body.type
     const chatMessage = request.body.message
     const chatConfirm = request.body.confirm
+    const chatEmail = request.body.user.email //servirá de parametro de autenticação
 
     //verificando o tipo de mensagem enviada pelo callback do mosia
     //Primeiro atendimento Menu Principal
@@ -56,7 +57,7 @@ app.post("/", async (request,response) => {
             await botOption4(chatProtocol)
         }
         else if(chatMessage == '5' || chatMessage.toString().match(/#/)){
-            await botOption5(chatProtocol,chatMessage)
+            await botOption5(chatProtocol,chatMessage,chatEmail)
         }
         else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4' || chatMessage != '5'){
             await botWrongOption(chatProtocol)
