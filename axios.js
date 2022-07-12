@@ -70,6 +70,7 @@ export async function ticketZendesk(idTicket){
     array.push('Última atualização: ' + dateUpdatedAt)
 
     console.log('Assunto: ' + ticketSubject)
+    array.push('Assunto: ' + ticketSubject)
     console.log('Prioridade: ' + ticketPriority)
     array.push('Prioridade: ' + ticketPriority)
 
