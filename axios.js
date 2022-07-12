@@ -43,29 +43,35 @@ export async function ticketZendesk(idTicket){
     const organization = `https://mobilesaude.zendesk.com/api/v2/organizations/${organizationId}`
     const objOrganization = await requestApi(organization)
     console.log('Cliente: ' + objOrganization.data.organization.name)
-    //array.push(objOrganization.data.organization.name)
+    array.push('Cliente: ' + objOrganization.data.organization.name)
 
     const assingnee = `https://mobilesaude.zendesk.com/api/v2/users/${ticketAssigneeId}.json`
     const objAssingnee = await requestApi(assingnee)
     console.log('Atribuído: ' + objAssingnee.data.user.name)
+    array.push('Atribuído: ' + objAssingnee.data.user.name)
 
     ticketDataEntrega.map((id) =>{
         if(id.id == '360007234013'){
             var dateDelivery = formatDate(id.value)
             console.log("Previsão de entrega: " + dateDelivery)
+            array.push("Previsão de entrega: " + dateDelivery)
         }
     })
 
     console.log('Status: ' + ticketStatus)
+    array.push('Status: ' + ticketStatus)
 
     var dateCreatedAt = formatDate(ticketCreatedAt)
     console.log('Data abertura: ' + dateCreatedAt)
+    array.push('Data abertura: ' + dateCreatedAt)
 
     var dateUpdatedAt = formatDate(ticketUpdatedAt)
     console.log('Última atualização: ' + dateUpdatedAt)
+    array.push('Última atualização: ' + dateUpdatedAt)
 
     console.log('Assunto: ' + ticketSubject)
     console.log('Prioridade: ' + ticketPriority)
+    array.push('Prioridade: ' + ticketPriority)
 
-    //return array
+    return array
 }
