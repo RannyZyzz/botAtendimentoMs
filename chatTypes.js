@@ -39,7 +39,12 @@ export async function botOption4(chatProtocol){
     await sendBotMessage(chatProtocol,'close','message')
 }
 
+var check = true
 export async function botOption5(chatProtocol,message){
+  if(check == true){
+    await sendBotMessage(chatProtocol,'message','Informe o número do ticket')
+    check == false
+  }
   const zendesk = await ticketZendesk(message)
   await sendBotMessage(chatProtocol,'message',zendesk)
 }
