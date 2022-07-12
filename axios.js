@@ -1,6 +1,7 @@
 import axios from "axios"
 
 export async function ticketZendesk(idTicket){
+    let array = []
 
     const ticket = `https://mobilesaude.zendesk.com/api/v2/tickets/${idTicket}.json`
 
@@ -42,6 +43,7 @@ export async function ticketZendesk(idTicket){
     const organization = `https://mobilesaude.zendesk.com/api/v2/organizations/${organizationId}`
     const objOrganization = await requestApi(organization)
     console.log('Cliente: ' + objOrganization.data.organization.name)
+    //array.push(objOrganization.data.organization.name)
 
     const assingnee = `https://mobilesaude.zendesk.com/api/v2/users/${ticketAssigneeId}.json`
     const objAssingnee = await requestApi(assingnee)
@@ -64,4 +66,6 @@ export async function ticketZendesk(idTicket){
 
     console.log('Assunto: ' + ticketSubject)
     console.log('Prioridade: ' + ticketPriority)
+
+    //return array
 }

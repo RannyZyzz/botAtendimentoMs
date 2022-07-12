@@ -39,15 +39,18 @@ export async function botOption4(chatProtocol){
     await sendBotMessage(chatProtocol,'close','message')
 }
 
-var check = true
+var check = 0
 export async function botOption5(chatProtocol,message){
-  if(check == true){
-    await sendBotMessage(chatProtocol,'message','Informe o número do ticket, Ex: #10000')
-    check == false
+  if(check >= 1){
+    const numberZendesk = message.toString().replace(/#/g,'')
+    //const zendesk = await ticketZendesk(numberZendesk)
+    //const result = zendesk.toString().replace(/,/g,'\n')
+    await sendBotMessage(chatProtocol,'message',result)
+    check += 0
   }
-  if(check == false){
-    const zendesk = await ticketZendesk(message)
-    await sendBotMessage(chatProtocol,'message',zendesk)
+  if(check == 0){
+    await sendBotMessage(chatProtocol,'message','Informe o número do ticket, Ex: #10000')
+    check += 1
   }
 }
 
