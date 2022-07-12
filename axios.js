@@ -51,7 +51,7 @@ export async function ticketZendesk(idTicket){
     array.push('Atribuído: ' + objAssingnee.data.user.name)
 
     ticketDataEntrega.map((id) =>{
-        if(id.id == '360007234013'){
+        if(id.id == '7707139955859'){
             var dateDelivery = formatDate(id.value)
             console.log("Previsão de entrega: " + dateDelivery)
             array.push("Previsão de entrega: " + dateDelivery)
