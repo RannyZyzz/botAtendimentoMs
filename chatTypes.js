@@ -41,16 +41,16 @@ export async function botOption4(chatProtocol){
 
 var check = 0
 export async function botOption5(chatProtocol,message){
-  if(check >= 1){
+  if(check == 0){
+    await sendBotMessage(chatProtocol,'message','Informe o número do ticket, Ex: #10000')
+    check += 1
+  }
+  else if(check > 0){
     const numberZendesk = message.toString().replace(/#/g,'')
     const zendesk = await ticketZendesk(numberZendesk)
     const result = zendesk.toString().replace(/,/g,'\n')
     await sendBotMessage(chatProtocol,'message',result)
-    check += 0
-  }
-  if(check == 0){
-    await sendBotMessage(chatProtocol,'message','Informe o número do ticket, Ex: #10000')
-    check += 1
+    check = 0
   }
 }
 
