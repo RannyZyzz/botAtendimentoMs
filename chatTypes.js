@@ -1,5 +1,6 @@
 import { sendBotMessage } from './mosiaCaller.js'
 import { requestGs } from './googleSheets.js'
+import { ticketZendesk } from './axios.js'
 
 export async function typeAttend(chatProtocol){
     const chatMenuOptions = 'Escolha uma das opções:\n1- Consultar status de nossos serviços;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento'
@@ -36,6 +37,11 @@ export async function botOption3(chatProtocol){
 
 export async function botOption4(chatProtocol){
     await sendBotMessage(chatProtocol,'close','message')
+}
+
+export async function botOption5(chatProtocol,message){
+  const zendesk = await ticketZendesk(message)
+  await sendBotMessage(chatProtocol,'message',zendesk)
 }
 
 export async function botWrongOption(chatProtocol){

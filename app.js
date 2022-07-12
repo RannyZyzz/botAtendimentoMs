@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { typeAttend, botOption1, botOption2, botOption3, botOption4, botWrongOption, botCallerDontClose, botMessageAttendantsOffline } from './chatTypes.js'
+import { typeAttend, botOption1, botOption2, botOption3, botOption4, botWrongOption, botCallerDontClose, botOption5 } from './chatTypes.js'
 import { sendBotMessage } from './mosiaCaller.js';
 
 const app = express();
@@ -55,7 +55,10 @@ app.post("/", async (request,response) => {
         else if(chatMessage == '4'){
             await botOption4(chatProtocol)
         }
-        else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4'){
+        else if(chatMessage == '5'){
+            await botOption5(chatProtocol,chatMessage)
+        }
+        else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4' || chatMessage != '5'){
             await botWrongOption(chatProtocol)
         }
     }
