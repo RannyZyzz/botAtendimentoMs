@@ -55,7 +55,7 @@ app.post("/", async (request,response) => {
         else if(chatMessage == '4'){
             await botOption4(chatProtocol)
         }
-        else if(chatMessage == '5'){
+        else if(chatMessage == '5' || chatMessage.match(/#*/)){
             await botOption5(chatProtocol,chatMessage)
         }
         else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4' || chatMessage != '5'){

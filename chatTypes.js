@@ -42,7 +42,7 @@ export async function botOption4(chatProtocol){
 var check = true
 export async function botOption5(chatProtocol,message){
   if(check == true){
-    await sendBotMessage(chatProtocol,'message','Informe o número do ticket')
+    await sendBotMessage(chatProtocol,'message','Informe o número do ticket, Ex: #10000')
     check == false
   }
   if(check == false){
