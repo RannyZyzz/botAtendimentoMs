@@ -35,7 +35,7 @@ app.post("/", async (request,response) => {
     //verificando o tipo de mensagem enviada pelo callback do mosia
     //Primeiro atendimento Menu Principal
     if(chatType == 'attend'){
-        const chatEmail = request.body.user.email //servirá de parametro de autenticação
+        arrayEmail.push(request.body.user.email) //servirá de parametro de autenticação
         await typeAttend(chatProtocol)
     }
 
