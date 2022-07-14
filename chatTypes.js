@@ -45,11 +45,11 @@ export async function botOption5(chatProtocol,message,emailAuthentication){
     const numberZendesk = message.toString().replace(/#/g,'')
     const zendesk = await ticketZendesk(numberZendesk,emailAuthentication)
     const result = zendesk.toString().replace(/,/g,'\n')
-    await sendBotMessage(chatProtocol,'message',result + '\n\nConseguimos ajudar?\n0-Retornar ao Menu\n4-Encerrar atendimento')
+    await sendBotMessage(chatProtocol,'message',result)
     check = 0
   }
   else if(check == 0){
-    await sendBotMessage(chatProtocol,'message','Informe o número do ticket.\nIMPORTANTE que seja informado com #(HASHTAG)\nEx: #10000\n#11000')
+    await sendBotMessage(chatProtocol,'message','Informe o número do ticket.\n\nIMPORTANTE que seja informado com #(HASHTAG)\nEx: #10000\nEx: #11000')
     check = 1
   }
 }
