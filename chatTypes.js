@@ -3,7 +3,7 @@ import { requestGs } from './googleSheets.js'
 import { ticketZendesk } from './axios.js'
 
 export async function typeAttend(chatProtocol){
-    const chatMenuOptions = 'Escolha uma das opções:\n1- Consultar status de nossos serviços;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento'
+    const chatMenuOptions = 'Escolha uma das opções:\n1- Consultar status de nossos serviços;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento;\n5- Consultar ticket aberto;'
     try{
       await sendBotMessage(chatProtocol,"message",chatMenuOptions)  
     }
@@ -45,11 +45,11 @@ export async function botOption5(chatProtocol,message,emailAuthentication){
     const numberZendesk = message.toString().replace(/#/g,'')
     const zendesk = await ticketZendesk(numberZendesk,emailAuthentication)
     const result = zendesk.toString().replace(/,/g,'\n')
-    await sendBotMessage(chatProtocol,'message',result)
+    await sendBotMessage(chatProtocol,'message',result + '\n\nConseguimos ajudar?\n0-Retornar ao Menu\n4-Encerrar atendimento')
     check = 0
   }
   else if(check == 0){
-    await sendBotMessage(chatProtocol,'message','Informe o número do ticket, Ex: #10000')
+    await sendBotMessage(chatProtocol,'message','Informe o número do ticket.\nIMPORTANTE que seja informado com #(HASHTAG)\nEx: #10000\n#11000')
     check = 1
   }
 }

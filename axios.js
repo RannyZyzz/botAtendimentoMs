@@ -82,6 +82,7 @@ export async function ticketZendesk(idTicket,emailAuthentication){
     }
     else if(emailAuthentication != objRequester.data.user.email){
         array.push('Este ticket não foi aberto pela sua conta de email')
+        array.push('\nConseguimos ajudar?\n0-Retornar ao Menu\n5-Pesquisar novo Ticket')
     }
     
 
