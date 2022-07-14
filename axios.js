@@ -57,7 +57,7 @@ export async function ticketZendesk(idTicket,emailAuthentication){
         array.push('Atribuído: ' + objAssingnee.data.user.name)
     
         ticketDataEntrega.map((id) =>{
-            if(id.id == '360007234013'){
+            if(id.id == '7707139955859'){
                 var dateDelivery = formatDate(id.value)
                 console.log("Previsão de entrega: " + dateDelivery)
                 array.push("Previsão de entrega: " + dateDelivery)
@@ -79,6 +79,7 @@ export async function ticketZendesk(idTicket,emailAuthentication){
         array.push('Assunto: ' + ticketSubject)
         console.log('Prioridade: ' + ticketPriority)
         array.push('Prioridade: ' + ticketPriority)
+        array.push('\nConseguimos ajudar?\n0-Retornar ao Menu\n5-Pesquisar novo Ticket')
     }
     else if(emailAuthentication != objRequester.data.user.email){
         array.push('Este ticket não foi aberto pela sua conta de email')
