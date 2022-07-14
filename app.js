@@ -16,6 +16,8 @@ app.get("/", (request,response) =>{
 
 })
 
+let arrayEmail = []
+
 app.post("/", async (request,response) => {
     if(request.headers['Content-Type'] === 'application/json') return response.status(401).json({
         error: 'Invalid Type',
@@ -28,10 +30,12 @@ app.post("/", async (request,response) => {
     const chatType = request.body.type
     const chatMessage = request.body.message
     const chatConfirm = request.body.confirm
+    
 
     //verificando o tipo de mensagem enviada pelo callback do mosia
     //Primeiro atendimento Menu Principal
     if(chatType == 'attend'){
+        arrayEmail.push(request.body.user.email) //servirá de parametro de autenticação
         await typeAttend(chatProtocol)
     }
 
@@ -56,8 +60,9 @@ app.post("/", async (request,response) => {
             await botOption4(chatProtocol)
         }
         else if(chatMessage == '5' || chatMessage.toString().match(/#/)){
-            await botOption5(chatProtocol,chatMessage)
-        }
+            const chatEmail = arrayEmail[0]
+            await botOption5(chatProtocol,chatMessage,chatEmail)
+          }
         else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4' || chatMessage != '5'){
             await botWrongOption(chatProtocol)
         }

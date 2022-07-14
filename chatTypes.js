@@ -3,7 +3,7 @@ import { requestGs } from './googleSheets.js'
 import { ticketZendesk } from './axios.js'
 
 export async function typeAttend(chatProtocol){
-    const chatMenuOptions = 'Escolha uma das opções:\n1- Consultar status de nossos serviços;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento'
+    const chatMenuOptions = 'Escolha uma das opções:\n1- Consultar status de nossos serviços;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento;\n5- Consultar ticket aberto;'
     try{
       await sendBotMessage(chatProtocol,"message",chatMenuOptions)  
     }
@@ -40,29 +40,29 @@ export async function botOption4(chatProtocol){
 }
 
 var check = 0
-export async function botOption5(chatProtocol,message){
-  if(check == 0){
-    await sendBotMessage(chatProtocol,'message','Informe o número do ticket, Ex: #10000')
-    check += 1
-  }
-  else if(check > 0){
+export async function botOption5(chatProtocol,message,emailAuthentication){
+  if(check == 1){
     const numberZendesk = message.toString().replace(/#/g,'')
-    const zendesk = await ticketZendesk(numberZendesk)
+    const zendesk = await ticketZendesk(numberZendesk,emailAuthentication)
     const result = zendesk.toString().replace(/,/g,'\n')
     await sendBotMessage(chatProtocol,'message',result)
     check = 0
+  }
+  else if(check == 0){
+    await sendBotMessage(chatProtocol,'message','Informe o número do ticket.\n\nIMPORTANTE que seja informado com #(HASHTAG)\nEx: #10000\nEx: #11000')
+    check = 1
   }
 }
 
 export async function botWrongOption(chatProtocol){
     const chatMessageWrongOption = "Desculpe não entendi a opção desejada, poderia selecionar uma novamente." +
-    '\n\nEscolha uma das opções:\n1- Consultar status de nossos serviços;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento'
+    '\n\nEscolha uma das opções:\n1- Consultar status de nossos serviços;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento\n5- Consultar ticket aberto;'
     await sendBotMessage(chatProtocol,'message',chatMessageWrongOption)
 }
 
 export async function botCallerDontClose(chatProtocol){
   const chatMessageCallerDontclose = 'Tudo bem, podemos ajudar em mais alguma coisa?\nSe SIM selecione uma de nossas opções abaixo, caso constrário basta digitar 4 para encerrar o atendimento' +
-  '\n\nEscolha uma das opções:\n1- Consultar status de nossos serviços;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento'
+  '\n\nEscolha uma das opções:\n1- Consultar status de nossos serviços;\n2- Abrir chamado;\n3- Falar com um de nossos atendentes;\n4- Encerrar Atendimento\n5- Consultar ticket aberto;'
   await sendBotMessage(chatProtocol,'message',chatMessageCallerDontclose)
 }
 
