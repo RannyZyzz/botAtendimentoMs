@@ -59,8 +59,10 @@ app.post("/", async (request,response) => {
             await botOption4(chatProtocol)
         }
         else if(chatMessage == '5' || chatMessage.toString().match(/#/)){
-            const result = searchDataProtocol(chatProtocol)
-            console.log(result)
+            const result = await searchDataProtocol(chatProtocol)
+            const toString = JSON.stringify(result).replace(/\[|\]/g,'')
+            const myObj = JSON.parse(toString)
+            const chatEmail = myObj.email
             await botOption5(chatProtocol,chatMessage,chatEmail)
           }
         else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4' || chatMessage != '5'){

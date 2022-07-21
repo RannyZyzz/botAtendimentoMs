@@ -38,7 +38,7 @@ export async function insertProtocol(req, res) {
 
 }
 
-export async function protocolData(req, res){
+export async function searchDataProtocol(req, res){
     
     const protocol = req
 
