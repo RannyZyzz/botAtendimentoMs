@@ -39,7 +39,7 @@ export async function insertProtocol(req, res) {
 }
 
 export async function searchDataProtocol(req, res){
-    
+
     const protocol = req
 
     const db = await openDb()
