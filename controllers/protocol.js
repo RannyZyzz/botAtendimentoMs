@@ -37,3 +37,14 @@ export async function insertProtocol(req, res) {
                 ('${protocol}','${name}','${email}','${celphone}')`)
 
 }
+
+export async function protocolData(req, res){
+    
+    const protocol = req
+
+    const db = await openDb()
+
+    const result = await db.all(`SELECT email FROM protocols WHERE protocol = '${protocol}'`)
+
+    return result
+}

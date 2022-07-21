@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import { typeAttend, botOption1, botOption2, botOption3, botOption4, botWrongOption, botCallerDontClose, botOption5 } from './chatTypes.js'
-import { createTable, insertProtocol } from './controllers/protocol.js';
+import { createTable, insertProtocol, searchDataProtocol } from './controllers/protocol.js';
 
 const app = express();
 var port = process.env.PORT || 3000;
@@ -59,7 +59,8 @@ app.post("/", async (request,response) => {
             await botOption4(chatProtocol)
         }
         else if(chatMessage == '5' || chatMessage.toString().match(/#/)){
-            const chatEmail = arrayEmail[0]
+            const result = searchDataProtocol(chatProtocol)
+            console.log(result)
             await botOption5(chatProtocol,chatMessage,chatEmail)
           }
         else if(chatMessage != '0' || chatMessage != '1' || chatMessage != '2' || chatMessage != '3' || chatMessage != '4' || chatMessage != '5'){
