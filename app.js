@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import { typeAttend, botOption1, botOption2, botOption3, botOption4, botWrongOption, botCallerDontClose, botOption5 } from './chatTypes.js'
-import { sendBotMessage } from './mosiaCaller.js';
+import { createTable, insertProtocol } from './controllers/protocol.js';
 
 const app = express();
 var port = process.env.PORT || 3000;
@@ -16,7 +16,6 @@ app.get("/", (request,response) =>{
 
 })
 
-let arrayEmail = []
 
 app.post("/", async (request,response) => {
     if(request.headers['Content-Type'] === 'application/json') return response.status(401).json({
@@ -35,7 +34,7 @@ app.post("/", async (request,response) => {
     //verificando o tipo de mensagem enviada pelo callback do mosia
     //Primeiro atendimento Menu Principal
     if(chatType == 'attend'){
-        arrayEmail.push(request.body.user.email) //servirá de parametro de autenticação
+        insertProtocol(request) //servirá de parametro de autenticação
         await typeAttend(chatProtocol)
     }
 
@@ -75,5 +74,8 @@ app.post("/", async (request,response) => {
     
     return response.sendStatus(200)
 })
+
+//Quando programa startar ele exclui e cria um novo banco de dados.
+createTable()
 
 app.listen(port, () => console.log(`Bot sendo executado na porta ${port}`))
